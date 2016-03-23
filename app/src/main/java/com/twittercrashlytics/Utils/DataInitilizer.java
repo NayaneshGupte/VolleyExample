@@ -1,9 +1,11 @@
 package com.twittercrashlytics.Utils;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.twittercrashlytics.R;
 import com.twittercrashlytics.TwitterCrashlyticsApplication;
 import com.twittercrashlytics.network.GsonRequest;
 import com.twittercrashlytics.network.model.Comment;
@@ -13,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by Nayanesh Gupte
+ *
  */
 public class DataInitilizer implements Response.Listener<Comment[]>, Response.ErrorListener {
 
@@ -48,6 +50,7 @@ public class DataInitilizer implements Response.Listener<Comment[]>, Response.Er
             TwitterCrashlyticsApplication.getInstance().addToRequestQueue(myReq, TAG);
         } else {
 
+            Toast.makeText(context, context.getString(R.string.no_network), Toast.LENGTH_SHORT).show();
 
         }
     }

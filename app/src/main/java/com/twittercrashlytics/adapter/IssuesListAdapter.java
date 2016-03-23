@@ -17,23 +17,18 @@ import com.twittercrashlytics.network.model.Issue;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-
 /**
  *
  */
 public class IssuesListAdapter extends RecyclerView.Adapter<IssuesListAdapter.IssuesViewHolder> {
     List<Issue> data = new ArrayList<>();
     private LayoutInflater inflater;
-    private Context context;
 
     private OnItemClickListener onItemClickListener;
 
     private ImageLoader imageLoader;
 
     public IssuesListAdapter(Context context) {
-        this.context = context;
         inflater = LayoutInflater.from(context);
 
         imageLoader = TwitterCrashlyticsApplication.getInstance().getImageLoader();
@@ -96,25 +91,24 @@ public class IssuesListAdapter extends RecyclerView.Adapter<IssuesListAdapter.Is
 
     static class IssuesViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.txtvTitle)
-        TextView txtvTitle;
+        final TextView txtvTitle;
 
-        @Bind(R.id.txtvIssue)
-        TextView txtvIssue;
+        final TextView txtvIssue;
 
-        @Bind(R.id.imgUser)
-        NetworkImageView imgUser;
+        final NetworkImageView imgUser;
 
-        @Bind(R.id.cardView)
-        View view;
+        final View view;
 
         public IssuesViewHolder(View itemView) {
             super(itemView);
 
+            view = itemView;
 
-            ButterKnife.bind(this, itemView);
+            txtvTitle = (TextView) itemView.findViewById(R.id.txtvTitle);
 
+            txtvIssue = (TextView) itemView.findViewById(R.id.txtvIssue);
 
+            imgUser = (NetworkImageView) itemView.findViewById(R.id.imgUser);
         }
     }
 }

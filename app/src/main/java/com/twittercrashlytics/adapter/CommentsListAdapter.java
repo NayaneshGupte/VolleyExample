@@ -17,12 +17,11 @@ import java.util.List;
  *
  */
 public class CommentsListAdapter extends RecyclerView.Adapter<CommentsListAdapter.CommentsViewHolder> {
+
     private List<Comment> data = new ArrayList<>();
     private LayoutInflater inflater;
-    private Context context;
 
     public CommentsListAdapter(Context context) {
-        this.context = context;
         inflater = LayoutInflater.from(context);
 
     }
@@ -37,8 +36,7 @@ public class CommentsListAdapter extends RecyclerView.Adapter<CommentsListAdapte
     @Override
     public CommentsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.row_comments, parent, false);
-        CommentsViewHolder holder = new CommentsViewHolder(view);
-        return holder;
+        return new CommentsViewHolder(view);
     }
 
     @Override
@@ -61,9 +59,9 @@ public class CommentsListAdapter extends RecyclerView.Adapter<CommentsListAdapte
 
     static class CommentsViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtvTitle;
+        final TextView txtvTitle;
 
-        TextView txtvIssue;
+        final TextView txtvIssue;
 
         public CommentsViewHolder(View itemView) {
             super(itemView);
