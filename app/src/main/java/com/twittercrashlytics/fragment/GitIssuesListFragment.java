@@ -52,16 +52,8 @@ public class GitIssuesListFragment extends Fragment implements IAppConstants, On
 
         View view = inflater.inflate(R.layout.fragment_git_issues_list, container, false);
 
-        init(view);
 
         return view;
-    }
-
-    private void init(View view) {
-
-        recyListComments = (RecyclerView) view.findViewById(R.id.recyListComments);
-        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
-
     }
 
 
@@ -69,6 +61,8 @@ public class GitIssuesListFragment extends Fragment implements IAppConstants, On
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        recyListComments = (RecyclerView) view.findViewById(R.id.recyListComments);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
         initRecyclerView();
     }
