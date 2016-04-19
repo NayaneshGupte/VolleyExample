@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * Fragment holding list of issues.
  */
-public class GitIssuesListFragment extends Fragment implements IAppConstants, OnItemClickListener {
+public class GitIssuesListFragment extends Fragment implements IAppConstants, OnItemClickListener, Response.Listener<Issue[]> {
 
 
     private static final String TAG = GitIssuesListFragment.class.getSimpleName();
@@ -92,7 +92,7 @@ public class GitIssuesListFragment extends Fragment implements IAppConstants, On
             GsonRequest<Issue[]> myReq = new GsonRequest<Issue[]>(BASE_URL,
                     Issue[].class,
                     null,
-                    createMyReqSuccessListener(),
+                    this,
                     createMyReqErrorListener());
 
             TwitterCrashlyticsApplication.getInstance().addToRequestQueue(myReq, TAG);
@@ -107,24 +107,6 @@ public class GitIssuesListFragment extends Fragment implements IAppConstants, On
 
     }
 
-    private Response.Listener<Issue[]> createMyReqSuccessListener() {
-        return new Response.Listener<Issue[]>() {
-            @Override
-            public void onResponse(Issue[] response) {
-
-                List<Issue> listIssues = Arrays.asList(response);
-
-                Collections.sort(listIssues, new DateComparator());
-
-                issuesListAdapter.add(listIssues);
-
-
-                progressBar.setVisibility(View.GONE);
-
-            }
-
-        };
-    }
 
     private Response.ErrorListener createMyReqErrorListener() {
         return new Response.ErrorListener() {
@@ -161,4 +143,16 @@ public class GitIssuesListFragment extends Fragment implements IAppConstants, On
     }
 
 
+    @Override
+    public void onResponse(Issue[] response) {
+
+        List<Issue> listIssues = Arrays.asList(response);
+
+        Collections.sort(listIssues, new DateComparator());
+
+        issuesListAdapter.add(listIssues);
+
+
+        progressBar.setVisibility(View.GONE);
+    }
 }

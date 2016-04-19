@@ -50,8 +50,7 @@ public class IssuesListAdapter extends RecyclerView.Adapter<IssuesListAdapter.Is
     @Override
     public IssuesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.row_issues, parent, false);
-        IssuesViewHolder holder = new IssuesViewHolder(view);
-        return holder;
+        return new IssuesViewHolder(view);
     }
 
     @Override

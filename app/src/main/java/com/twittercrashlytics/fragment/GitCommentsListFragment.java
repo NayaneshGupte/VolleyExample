@@ -125,7 +125,6 @@ public class GitCommentsListFragment extends DialogFragment implements IAppConst
     @Override
     public void onDataReceived(List<Comment> listIssues) {
 
-        progressBar.setVisibility(View.GONE);
 
         commentsListAdapter.add(listIssues);
         progressBar.setVisibility(View.GONE);
